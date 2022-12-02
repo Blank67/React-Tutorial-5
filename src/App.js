@@ -1,40 +1,44 @@
 import React, { useCallback, useState } from 'react';
 import DemoList from './components/Demo/DemoList';
 import Button from './components/UI/Button/Button';
-
 import './App.css';
 
 function App() {
+  console.log('App.js');
   const [listTitle, setListTitle] = useState('My List');
-  const [buttonName, setButonName] = useState('Change to Descending Order');
-  const [list,setList] = useState([5,3,1,10]);
+  const [buttonName, setButtonName] = useState('Change to Descending Order');
+  const [list, setList] = useState([5, 3, 1, 10]);
   const [asc, setAsc] = useState(true);
 
   const changeTitleHandler = useCallback(() => {
     setListTitle('New List');
-  },[]);
+  }, []);
 
   const changeOrderHandler = useCallback(() => {
-    if(asc){
+    if (asc) {
+      setListTitle('Asc List');
+      setButtonName('Change to Descending Order');
+      setList(list.sort((a, b) => a - b));
       setAsc(false);
-      setListTitle('Sorted List');
-      setButonName('Change to Descending Order');
-      setList(list.sort((a,b) => (a-b)))
-    }else{
+    } else {
+      setListTitle('Dec List');
+      setButtonName('Change to Ascending Order');
+      setList(list.sort((a, b) => b - a));
       setAsc(true);
-      setButonName('Change to Ascending Order');
-      setList(list.sort((a,b) => (b-a)))
     }
-  },[asc,list])
-
-  // console.log('App.js Running!');
+  }, [asc, list]);
 
   return (
-    <div className="app">
+    <div className='app'>
       <DemoList title={listTitle} items={list} />
-      <Button onClick={changeTitleHandler}>Change List Title</Button>
-      <br /><br />
-      <Button onClick={changeOrderHandler}>{buttonName}</Button>
+      <Button data='title button' onClick={changeTitleHandler}>
+        Change List Title
+      </Button>
+      <br />
+      <br />
+      <Button data='sort button' onClick={changeOrderHandler}>
+        {buttonName}
+      </Button>
     </div>
   );
 }

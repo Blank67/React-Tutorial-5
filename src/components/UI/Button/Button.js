@@ -1,9 +1,8 @@
 import React from 'react';
-
 import css from './Button.module.css';
 
 const Button = (props) => {
-  // console.log('Button.js Running!');
+  console.log(props.data);
 
   return (
     <button

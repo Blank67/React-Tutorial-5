@@ -2,8 +2,7 @@ import React from 'react';
 import css from './DemoList.module.css';
 
 const DemoList = (props) => {
-//   console.log('DemoList.js Running!');
-//   console.log(props.items);
+  console.log('DemoList.js Running!');
 
   return (
     <div className={css.list}>
@@ -17,4 +16,4 @@ const DemoList = (props) => {
   );
 };
 
-export default DemoList;
+export default React.memo(DemoList);
